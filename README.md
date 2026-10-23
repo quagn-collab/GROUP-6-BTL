@@ -2,7 +2,7 @@
 
 ## Chạy chương trình quản lý người dùng và sản phẩm
 
-Chương trình Java Swing hiện thực hai chức năng 3.1.1 và 3.1.2. Dữ liệu chỉ được lưu trong bộ nhớ nên sẽ mất khi thoát chương trình.
+Chương trình Java Swing hiện thực hai chức năng 3.1.1 và 3.1.2.
 
 Yêu cầu: JDK 21 và Maven.
 
