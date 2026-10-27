@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>auction-server</module>
-        <module>auction-client</module>
+        <module>Auction-server</module>
+        <module>Auction-client</module>
     </modules>
 
     <properties>
