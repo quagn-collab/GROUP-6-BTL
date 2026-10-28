@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.auction.demo.ui.controller.LoginController"
+            styleClass="root-pane">
+    <center>
+        <HBox alignment="CENTER" spacing="0" styleClass="login-shell">
+            <StackPane HBox.hgrow="ALWAYS" styleClass="hero-pane" prefWidth="480" maxWidth="560">
+                <Rectangle width="560" height="720" styleClass="hero-wash"/>
+                <VBox alignment="BOTTOM_LEFT" spacing="12" styleClass="hero-copy">
+                    <padding>
+                        <Insets top="48" right="48" bottom="48" left="48"/>
+                    </padding>
+                    <Label text="AUCTION HOUSE" styleClass="brand-mark"/>
+                    <Label text="Đấu giá trực tuyến" styleClass="hero-title"/>
+                    <Label text="Đăng nhập để tham gia phiên đấu giá." styleClass="hero-subtitle"
+                           wrapText="true"/>
+                </VBox>
+            </StackPane>
+
+            <VBox alignment="CENTER" spacing="18" styleClass="form-pane" prefWidth="420" maxWidth="460">
+                <padding>
+                    <Insets top="40" right="48" bottom="40" left="48"/>
+                </padding>
+                <Label text="Đăng nhập" styleClass="form-title"/>
+                <Label text="Dùng tài khoản seed: admin / password" styleClass="form-hint"/>
+
+                <VBox spacing="6">
+                    <Label text="Username" styleClass="field-label"/>
+                    <TextField fx:id="usernameField" promptText="admin" styleClass="input"/>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Password" styleClass="field-label"/>
+                    <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="input"
+                                   onAction="#onLogin"/>
+                </VBox>
+
+                <Label fx:id="errorLabel" styleClass="error-text" wrapText="true"/>
+
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Button fx:id="loginButton" text="Đăng nhập" styleClass="primary-btn" onAction="#onLogin"/>
+                    <ProgressIndicator fx:id="loading" prefWidth="28" prefHeight="28"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

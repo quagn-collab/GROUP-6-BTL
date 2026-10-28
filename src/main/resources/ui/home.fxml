@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.auction.demo.ui.controller.HomeController"
+            styleClass="root-pane">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16" styleClass="top-bar">
+            <padding>
+                <Insets top="18" right="28" bottom="18" left="28"/>
+            </padding>
+            <Label fx:id="brandLabel" text="Auction House" styleClass="brand-mark"/>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <Button text="Đăng xuất" styleClass="ghost-btn" onAction="#onLogout"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="14" alignment="TOP_LEFT" styleClass="home-body">
+            <padding>
+                <Insets top="40" right="48" bottom="40" left="48"/>
+            </padding>
+            <Label text="Đăng nhập thành công" styleClass="form-title"/>
+            <Label fx:id="welcomeLabel" styleClass="hero-subtitle"/>
+            <Label fx:id="roleLabel" styleClass="field-label"/>
+            <Label fx:id="tokenPreviewLabel" styleClass="token-preview" wrapText="true"/>
+            <Label text="Bước tiếp: gắn danh sách phiên đấu giá / phòng bid." styleClass="form-hint"/>
+        </VBox>
+    </center>
+</BorderPane>

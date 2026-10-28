@@ -12,9 +12,18 @@ Backend Spring Boot (REST + WebSocket) cho hệ thống đấu giá trực tuy�
 
 ## Chạy nhanh
 
+**1. Server API**
 ```bash
 mvn spring-boot:run
 ```
+
+**2. JavaFX client (login demo)** — terminal khác, server phải đang chạy:
+```bash
+mvn javafx:run
+```
+Hoặc IDE: chạy main class `com.auction.demo.ui.AuctionClientLauncher` (không chạy `AuctionClientApp`).
+
+Login seed: `admin` / `password` → gọi `POST http://localhost:8089/api/auth/login`
 
 - API: http://localhost:8080
 - Swagger: http://localhost:8080/swagger-ui.html
