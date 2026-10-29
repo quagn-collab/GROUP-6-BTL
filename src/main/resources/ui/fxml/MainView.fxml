@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<HBox prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.auction.demo.ui.controller.MainController">
+
+    <!-- ====== PHẦN TRÁI (50%): BANNER GRADIENT + BRANDING ====== -->
+    <VBox alignment="CENTER" spacing="20.0" styleClass="main-banner-left" HBox.hgrow="ALWAYS" prefWidth="500.0">
+        <children>
+            <!-- Logo UET -->
+            <StackPane>
+                <ImageView fitHeight="110.0" fitWidth="110.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/UET-circle.png" />
+                    </image>
+                </ImageView>
+            </StackPane>
+
+            <!-- Tên App -->
+            <Label text="AuctionUET" textFill="WHITE" alignment="CENTER">
+                <font><Font name="System Bold" size="42.0" /></font>
+            </Label>
+
+            <!-- Slogan -->
+            <Label text="UET - Đấu Giá Thông Minh, Lợi Ích Vô Tận" textFill="rgba(255,255,255,0.85)" alignment="CENTER">
+                <font><Font name="System" size="22.0" /></font>
+            </Label>
+
+            <!-- Mô tả nhỏ -->
+            <Label text="Nền tảng đấu giá trực tuyến uy tín&#10;dành cho mọi nhà" textFill="rgba(255,255,255,0.6)" wrapText="true" alignment="CENTER" textAlignment="CENTER">
+                <font><Font size="16.0" /></font>
+                <VBox.margin><Insets top="10.0" /></VBox.margin>
+            </Label>
+        </children>
+        <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+        </padding>
+    </VBox>
+
+    <!-- ====== PHẦN PHẢI (50%): FORM LOGIN / REGISTER ====== -->
+    <VBox styleClass="main-form-right" HBox.hgrow="ALWAYS" prefWidth="500.0" minWidth="400.0">
+        <!-- Nút toggle theme ở góc trên phải -->
+        <HBox alignment="CENTER_RIGHT">
+            <padding><Insets top="12.0" right="15.0" /></padding>
+            <children>
+                <Button fx:id="btnToggleTheme" mnemonicParsing="false" onAction="#handleToggleTheme" styleClass="theme-toggle-btn" text="S" />
+            </children>
+        </HBox>
+
+        <!-- Panel chứa form Login/Register -->
+        <StackPane fx:id="rightPanel" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="30.0" left="50.0" right="50.0" top="10.0" />
+            </padding>
+        </StackPane>
+    </VBox>
+</HBox>

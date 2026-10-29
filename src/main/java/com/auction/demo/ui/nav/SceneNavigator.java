@@ -1,8 +1,7 @@
 package com.auction.demo.ui.nav;
 
-import java.io.IOException;
+import com.auction.demo.ui.theme.ThemeManager;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,22 +17,40 @@ public final class SceneNavigator {
 		stage = primaryStage;
 	}
 
+	public static Stage stage() {
+		return stage;
+	}
+
 	public static void showLogin() {
-		setScene("/ui/login.fxml", 960, 640);
+		showAuth();
+	}
+
+	public static void showAuth() {
+		setScene("/ui/fxml/MainView.fxml", 1100, 720);
+	}
+
+	public static void showDashboard() {
+		setScene("/ui/fxml/DashboardView.fxml", 1280, 780);
 	}
 
 	public static void showHome() {
-		setScene("/ui/home.fxml", 1100, 720);
+		showDashboard();
 	}
 
 	private static void setScene(String fxml, double w, double h) {
-		try {
-			Parent root = FXMLLoader.load(SceneNavigator.class.getResource(fxml));
-			Scene scene = new Scene(root, w, h);
-			scene.getStylesheets().add(SceneNavigator.class.getResource("/ui/app.css").toExternalForm());
-			stage.setScene(scene);
-		} catch (IOException e) {
-			throw new IllegalStateException("Cannot load " + fxml, e);
+		if (stage == null) {
+			return;
 		}
+		Parent root = FxmlView.load(fxml).root();
+		Scene scene = stage.getScene();
+		if (scene == null) {
+			scene = new Scene(root, w, h);
+			stage.setScene(scene);
+		} else {
+			scene.setRoot(root);
+			stage.setWidth(Math.max(stage.getWidth(), w));
+			stage.setHeight(Math.max(stage.getHeight(), h));
+		}
+		ThemeManager.apply(scene);
 	}
 }

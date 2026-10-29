@@ -10,10 +10,10 @@ public class AuctionClientApp extends Application {
 	@Override
 	public void start(Stage stage) {
 		SceneNavigator.init(stage);
-		SceneNavigator.showLogin();
-		stage.setTitle("Auction House");
-		stage.setMinWidth(960);
-		stage.setMinHeight(640);
+		stage.setTitle("AuctionUET");
+		stage.setMinWidth(1000);
+		stage.setMinHeight(650);
+		SceneNavigator.showAuth();
 		stage.show();
 	}
 }

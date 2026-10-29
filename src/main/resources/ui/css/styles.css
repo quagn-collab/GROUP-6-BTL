@@ -1,0 +1,439 @@
+/* =======================================
+   styles.css - CHỈ CHỨA LAYOUT / SPACING / FONT
+   Màu sắc được quản lý bởi dark-theme.css và light-theme.css
+   ======================================= */
+
+/* --- 1. HERO SECTION --- */
+.hero-section {
+    /* Đảm bảo ảnh anhnen.jpg nằm trong resources/images/ */
+    -fx-background-image: url('../images/anhnen.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-color: rgba(236, 240, 241, 0.8);
+}
+
+/* --- 2. SIDEBAR NAVIGATION --- */
+.sidebar {
+    -fx-min-width: 250px;
+}
+
+.sidebar-logo {
+    -fx-alignment: CENTER;
+    -fx-padding: 0 0 20 0;
+}
+
+.sidebar-item {
+    -fx-font-size: 15px;
+    -fx-padding: 12 15;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.sidebar-item.active {
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+}
+
+.sidebar-footer-box {
+    -fx-padding: 20 0 0 0;
+}
+
+/* --- 3. Ô NHẬP LIỆU --- */
+.text-field, .password-field, .text-area {
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-font-size: 14;
+}
+
+/* --- 4. COMBOBOX --- */
+.combo-box {
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 14;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-padding: 8px;
+}
+
+/* --- 5. NÚT BẤM CHÍNH --- */
+.button {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-padding: 12 40;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* Đảm bảo sidebar buttons không bị dính CSS của Button chính */
+.sidebar-item.button {
+    -fx-padding: 12 15;
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+}
+.sidebar-item.button.active {
+    -fx-font-weight: bold;
+}
+
+/* --- 6. CÁC THÀNH PHẦN KHÁC --- */
+.error-label {
+    -fx-font-size: 12;
+}
+.hyperlink {
+    -fx-font-size: 12;
+}
+
+/* --- 7. TEXT CLASSES (FIX FONT SHRINKING) --- */
+.text-heading {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.text-title-large {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-welcome-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* --- 8. THẺ SẢN PHẨM (AUCTION CARDS) --- */
+.auction-card {
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+    -fx-cursor: hand;
+}
+
+.auction-card:hover {
+    -fx-translate-y: -4;
+}
+
+/* --- 8. HUY HIỆU TRẠNG THÁI (BADGES) --- */
+.status-badge-running {
+    -fx-background-radius: 20;
+    -fx-padding: 4 12;
+    -fx-font-weight: bold;
+}
+
+.status-badge-open {
+    -fx-background-radius: 20;
+    -fx-padding: 4 12;
+    -fx-font-weight: bold;
+}
+
+.status-badge-finished {
+    -fx-background-radius: 20;
+    -fx-padding: 4 12;
+    -fx-font-weight: bold;
+}
+
+.status-badge-canceled {
+    -fx-background-radius: 20;
+    -fx-padding: 4 12;
+    -fx-font-weight: bold;
+}
+
+.item-type-badge {
+    -fx-background-radius: 20;
+    -fx-padding: 4 12;
+    -fx-font-weight: bold;
+}
+
+.detail-price-label {
+    -fx-font-weight: bold;
+}
+
+.detail-leader-label {
+    -fx-font-weight: bold;
+}
+
+.detail-time-label {
+    -fx-font-weight: bold;
+}
+
+/* --- 9. LOGIN / REGISTER TITLES --- */
+.login-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.register-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+/* --- 10. HOME BANNER & PAGINATION --- */
+.pagination-button {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-min-width: 40;
+    -fx-alignment: center;
+}
+
+/* --- 11. WALLET CARD --- */
+.wallet-card {
+    -fx-background-radius: 20;
+    -fx-padding: 30;
+}
+
+/* --- 12. PAYMENT FILTER CHIPS --- */
+.payment-filter-chip {
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-padding: 9 18;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* --- 13. PAYMENT CHECKOUT PANEL --- */
+.payment-checkout-flow {
+    -fx-padding: 4 0 20 0;
+}
+
+.payment-checkout-column {
+    -fx-fill-width: true;
+}
+
+.payment-method-card,
+.payment-info-card,
+.payment-action-card {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 18;
+}
+
+.payment-action-card {
+    -fx-min-height: 360;
+}
+
+.payment-card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.payment-method-row {
+    -fx-padding: 10 12;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-cursor: hand;
+}
+
+.payment-method-check {
+    -fx-min-width: 22;
+    -fx-max-width: 22;
+    -fx-min-height: 22;
+    -fx-max-height: 22;
+    -fx-alignment: center;
+    -fx-background-radius: 99;
+    -fx-border-radius: 99;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.payment-method-menu {
+    -fx-padding: 4 0 0 0;
+}
+
+.payment-brand-vietqr,
+.payment-brand-cash {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.payment-info-label {
+    -fx-font-size: 13px;
+    -fx-min-width: 145;
+}
+
+.payment-info-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: right;
+}
+
+.payment-total-row {
+    -fx-padding: 8 0 0 0;
+}
+
+.payment-divider {
+    -fx-min-height: 1;
+    -fx-pref-height: 1;
+}
+
+.payment-qr-brand {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.payment-qr-grid {
+    -fx-padding: 12;
+    -fx-hgap: 1;
+    -fx-vgap: 1;
+    -fx-background-radius: 14;
+}
+
+.payment-action-amount {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.payment-cash-box {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-padding: 14;
+}
+
+.payment-message {
+    -fx-font-size: 13px;
+    -fx-text-alignment: center;
+}
+
+.payment-confirm-button,
+.payment-back-button {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 11 18;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* --- 14. KIỂM DUYỆT SẢN PHẨM --- */
+.approval-toolbar {
+    -fx-padding: 10 12;
+    -fx-background-radius: 8;
+}
+
+.approval-switch {
+    -fx-min-width: 52;
+    -fx-pref-width: 52;
+    -fx-max-width: 52;
+    -fx-min-height: 28;
+    -fx-pref-height: 28;
+    -fx-max-height: 28;
+    -fx-padding: 3;
+    -fx-background-radius: 999;
+    -fx-cursor: hand;
+}
+
+.approval-switch-thumb {
+    -fx-min-width: 22;
+    -fx-pref-width: 22;
+    -fx-max-width: 22;
+    -fx-min-height: 22;
+    -fx-pref-height: 22;
+    -fx-max-height: 22;
+    -fx-background-radius: 999;
+}
+
+.approval-item-card {
+    -fx-min-height: 236;
+}
+
+.approval-card-title,
+.approval-detail-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.approval-card-price,
+.approval-detail-price {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.approval-card-actions {
+    -fx-padding: 5 0 0 0;
+}
+
+.approval-action-button {
+    -fx-font-size: 13px;
+    -fx-padding: 8 14;
+}
+
+.approval-detail-panel,
+.approval-detail-image {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 18;
+}
+
+/* --- 15. BẢNG DỮ LIỆU --- */
+.table-view {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+}
+
+.table-view .column-header,
+.table-view .filler,
+.table-view .column-header-background {
+    -fx-pref-height: 38;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10 9;
+}
+
+.table-action-button {
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+    -fx-min-width: 88;
+    -fx-pref-width: 88;
+    -fx-max-width: 96;
+}
+
+/* --- 16. DANH SÁCH (LIST VIEWS) --- */
+.list-view {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+}
+.list-view .list-cell {
+    -fx-padding: 10 15;
+    -fx-font-size: 14px;
+}
+
+/* --- 17. MICROPHONE & SETTINGS GEAR BUTTONS --- */
+.btn-mic {
+    -fx-min-width: 65px;
+    -fx-min-height: 45px;
+    -fx-max-height: 45px;
+    -fx-background-radius: 22.5;
+    -fx-border-radius: 22.5;
+    -fx-padding: 0 10;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.btn-settings {
+    -fx-min-width: 45px;
+    -fx-max-width: 45px;
+    -fx-min-height: 45px;
+    -fx-max-height: 45px;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
