@@ -1,1 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Diagram - Kiến Trúc Hệ Thống</title>
+    <!-- Nhúng thư viện Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 24px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            padding: 32px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #64748b;
+        }
+        .zoom-status {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn-secondary {
+            background-color: #64748b;
+        }
+        .diagram-viewport {
+            width: 100%;
+            overflow: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 24px;
+            min-height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        #diagram-wrapper {
+            transform-origin: top center;
+            transition: transform 0.2s ease;
+        }
+        .legend-section {
+            margin-top: 32px;
+        }
+        .legend-section h3 {
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .legend-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 6px;
+        }
+        .legend-card strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .legend-card span {
+            display: block;
+            font-size: 0.9rem;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+        .details-box {
+            margin-top: 24px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .details-box ul {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        .details-box li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Class Diagram - Hệ Thống Đấu Giá</h1>
+            <p>Sơ đồ chi tiết các lớp và mối quan hệ trong ứng dụng quản lý đấu giá</p>
+        </div>
 
+        <div class="zoom-status">
+            Độ phóng to hiện tại: <strong id="zoom-value">100%</strong>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="changeZoom(0.15)">🔍 Phóng to (+)</button>
+            <button class="btn" onclick="changeZoom(-0.15)">🔎 Thu nhỏ (-)</button>
+            <button class="btn btn-secondary" onclick="resetZoom()">🔄 Đặt lại (100%)</button>
+        </div>
+
+        <div class="diagram-viewport">
+            <div id="diagram-wrapper">
+                <pre class="mermaid">
+classDiagram
+    %% === Abstract Base Classes ===
+    class Entity {
+        -String id
+        -LocalDateTime createdAt
+        +getId() String
+        +getCreatedAt() LocalDateTime
+        +printInfo()* void
+    }
+    
+    %% === User Hierarchy ===
+    class User {
+        -String username
+        -String email
+        -String passwordHash
+        -String role
+        +getUsername() String
+        +getEmail() String
+        +getPassword() String
+        +getRole() String
+        +login(password: String) boolean
+        +logout() void
+    }
+    
+    class Admin {
+        -String adminLevel
+        +suspend(user: User) void
+        +cancelAuction(auction: Auction) void
+        +viewAuctions() List~Auction~
+        +getAdminLevel() String
+        +printInfo() void
+        +getRole() String
+    }
+    
+    class Seller {
+        -List~Item~ listedItems
+        -double rating
+        +listItems(item: Item) void
+        +removeItem(item: Item) void
+        +getRating() double
+        +createAuction(...) Auction
+        +printInfo() void
+        +getRole() String
+    }
+    
+    class Bidder {
+        -List~BidTransaction~ bidHistory
+        +placeBid(auction: Auction, amt: double) boolean
+        +addBidToHistory(bt: BidTransaction) void
+        +getBidHistory() List~BidTransaction~
+        +printInfo() void
+        +update(auction: Auction) void
+        +getRole() String
+    }
+    
+    %% === Item Hierarchy ===
+    class Item {
+        -String name
+        -String description
+        -String imageUrl
+        -String condition
+        +getName() String
+        +getDescription() String
+        +getImageUrl() String
+        +getCondition() String
+        +getCategory() String
+        +printInfo()* void
+    }
+    
+    class Art {
+        -String artist
+        -int year
+        -String medium
+        +getArtist() String
+        +getMedium() String
+        +getCategory() String
+        +printInfo() void
+    }
+    
+    class Electronics {
+        -String brand
+        -String model
+        -int warrantyMonths
+        +getBrand() String
+        +getWarrantyMonths() int
+        +getCategory() String
+        +printInfo() void
+    }
+    
+    class Vehicle {
+        -String make
+        -String model
+        -int year
+        -int mileage
+        +getMake() String
+        +getModel() String
+        +getYear() int
+        +getMileage() int
+        +getCategory() String
+        +printInfo() void
+    }
+    
+    %% === Auction Related ===
+    class Auction {
+        -String auctionId
+        -double startPrice
+        -double currentPrice
+        -double reservePrice
+        -AuctionStatus status
+        -LocalDateTime startTime
+        -LocalDateTime endTime
+        -Bidder currentLeader
+        -List~BidTransaction~ bids
+        -List~Observer~ observers
+        -ScheduledExecutorService scheduler
+        -Item item
+        -Seller seller
+        +getAuctionId() String
+        +getStartPrice() double
+        +getCurrentPrice() double
+        +getReservePrice() double
+        +getStatus() AuctionStatus
+        +getStartTime() LocalDateTime
+        +getEndTime() LocalDateTime
+        +getCurrentLeader() Bidder
+        +getItem() Item
+        +getSeller() Seller
+        +getBids() List~BidTransaction~
+        +getWinner() Bidder
+        +placeBid(bidder: Bidder, amt: double) boolean
+        +close() void
+        +extendTime(seconds: int) void
+        +setItem(item: Item) void
+        +setSeller(seller: Seller) void
+        +setStatus(status: AuctionStatus) void
+        +addObserver(o: Observer) void
+        +removeObserver(o: Observer) void
+        +notifyObservers() void
+    }
+    
+    class AuctionStatus {
+        OPEN
+        RUNNING
+        FINISHED
+        PAID
+        CANCELED
+    }
+    
+    class BidTransaction {
+        -String transactionId
+        -double amount
+        -LocalDateTime timestamp
+        -boolean isAutoBid
+        -String status
+        -Bidder bidder
+        +getAmount() double
+        +getTransactionId() String
+        +getTimestamp() LocalDateTime
+        +getStatus() String
+        +isAutoBid() boolean
+        +getBidder() Bidder
+        +setStatus(status: String) void
+    }
+    
+    %% === Observer Pattern ===
+    class Observer {
+        +update(Auction)* void
+    }
+    
+    class Subject {
+        +addObserver(Observer) void
+        +removeObserver(Observer) void
+        +notifyObservers() void
+    }
+    
+    %% === Factory Pattern ===
+    class ItemFactory {
+        +createItem()* Item
+    }
+    
+    class BaseItemFactory {
+        -String name
+        -String description
+        -String imageUrl
+        -String condition
+        +generateId() String
+        +generateCreatedAt() LocalDateTime
+    }
+    
+    class ArtFactory {
+        -String artist
+        -int year
+        -String medium
+        +createItem() Item
+    }
+    
+    class ElectronicsFactory {
+        -String brand
+        -String model
+        -int warrantyMonths
+        +createItem() Item
+    }
+    
+    class VehicleFactory {
+        -String make
+        -String model
+        -int year
+        -int mileage
+        +createItem() Item
+    }
+    
+    %% === Inheritance Relationships ===
+    Entity <|-- User
+    Entity <|-- Item
+    User <|-- Admin
+    User <|-- Seller
+    User <|-- Bidder
+    Item <|-- Art
+    Item <|-- Electronics
+    Item <|-- Vehicle
+    
+    %% === Composition & Association ===
+    Auction *-- BidTransaction : contains
+    Auction *-- AuctionStatus : has
+    Auction -- Seller : createdBy
+    Auction -- Item : contains
+    Auction -- Bidder : hasLeader
+    BidTransaction -- Bidder : executedBy
+    Seller -- Item : owns
+    Bidder -- BidTransaction : performs
+    
+    %% === Observer Pattern ===
+    Subject <|.. Auction : implements
+    Observer <|.. Bidder : implements
+    Auction --> Observer : notifies
+    
+    %% === Factory Pattern ===
+    ItemFactory <|.. BaseItemFactory : implements
+    ItemFactory <|.. ArtFactory : implements
+    ItemFactory <|.. ElectronicsFactory : implements
+    ItemFactory <|.. VehicleFactory : implements
+    BaseItemFactory <|-- ArtFactory : extends
+    BaseItemFactory <|-- ElectronicsFactory : extends
+    BaseItemFactory <|-- VehicleFactory : extends
+                </pre>
+            </div>
+        </div>
+
+        <div class="legend-section">
+            <h3>📖 Chú Thích Biểu Đồ</h3>
+            <div class="legend-grid">
+                <div class="legend-card">
+                    <strong>🏗️ Inheritance (Kế Thừa)</strong>
+                    <span>✓ Entity → User → Admin, Seller, Bidder</span>
+                    <span>✓ Item → Art, Electronics, Vehicle</span>
+                    <span>✓ ItemFactory → BaseItemFactory → Concrete Factories</span>
+                </div>
+                <div class="legend-card">
+                    <strong>🔌 Interface Implementation</strong>
+                    <span>✓ Auction implements Subject (Observer Pattern)</span>
+                    <span>✓ Bidder implements Observer</span>
+                    <span>✓ Factories implement ItemFactory</span>
+                </div>
+                <div class="legend-card">
+                    <strong>🔗 Composition & Association</strong>
+                    <span>✓ Auction chứa BidTransaction (1:*)</span>
+                    <span>✓ Auction liên kết với Seller, Item, Bidder</span>
+                    <span>✓ Seller sở hữu Item</span>
+                </div>
+                <div class="legend-card">
+                    <strong>🎨 Design Patterns</strong>
+                    <span>✓ Observer: Thông báo thay đổi phiên đấu giá</span>
+                    <span>✓ Factory Method: Tạo các loại Item khác nhau</span>
+                    <span>✓ Template Method: BaseItemFactory cung cấp nền tảng</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-box">
+            <strong>📝 Thông Tin Kiến Trúc Chi Tiết:</strong>
+            <ul>
+                <li><strong>Entity:</strong> Lớp trừu tượng cơ sở cho mọi thực thể, có <code>id</code> và <code>createdAt</code>.</li>
+                <li><strong>User & Hierarchy:</strong> Gồm Admin (quản trị viên), Seller (người bán), Bidder (người tham gia đấu giá).</li>
+                <li><strong>Auction:</strong> Quản lý phiên đấu giá, triển khai Subject pattern để thông báo cho Observers.</li>
+                <li><strong>Factory & Observer Pattern:</strong> Đảm bảo tính mở rộng (Open/Closed Principle) và cập nhật thời gian thực.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose'
+        });
+
+        let currentScale = 1;
+        const wrapper = document.getElementById('diagram-wrapper');
+        const zoomValue = document.getElementById('zoom-value');
+
+        function changeZoom(delta) {
+            currentScale = Math.min(Math.max(0.4, currentScale + delta), 2.5);
+            updateZoom();
+        }
+
+        function resetZoom() {
+            currentScale = 1;
+            updateZoom();
+        }
+
+        function updateZoom() {
+            wrapper.style.transform = `scale(${currentScale})`;
+            zoomValue.textContent = `${Math.round(currentScale * 100)}%`;
+        }
+    </script>
+</body>
+</html>
