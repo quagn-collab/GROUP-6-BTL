@@ -27,12 +27,12 @@
             </Label>
 
             <!-- Slogan -->
-            <Label text="Săn Đồ Ngon - Giá Cực Hời" textFill="rgba(255,255,255,0.85)" alignment="CENTER">
+            <Label text="UET - Đấu Giá Thông Minh, Lợi Ích Vô Tận" textFill="rgba(255,255,255,0.85)" alignment="CENTER">
                 <font><Font name="System" size="22.0" /></font>
             </Label>
 
             <!-- Mô tả nhỏ -->
-            <Label text="Nền tảng đấu giá trực tuyến uy tín&#10;dành cho sinh viên UET" textFill="rgba(255,255,255,0.6)" wrapText="true" alignment="CENTER" textAlignment="CENTER">
+            <Label text="Nền tảng đấu giá trực tuyến uy tín&#10;dành cho mọi nhà" textFill="rgba(255,255,255,0.6)" wrapText="true" alignment="CENTER" textAlignment="CENTER">
                 <font><Font size="16.0" /></font>
                 <VBox.margin><Insets top="10.0" /></VBox.margin>
             </Label>
