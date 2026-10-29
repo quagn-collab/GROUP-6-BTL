@@ -1,4 +1,4 @@
-'''mermaid
+```mermaid
 classDiagram
     %% === Abstract Base Classes ===
     class Entity {
@@ -251,4 +251,4 @@ classDiagram
     BaseItemFactory <|-- ArtFactory : extends
     BaseItemFactory <|-- ElectronicsFactory : extends
     BaseItemFactory <|-- VehicleFactory : extends
-'''
+```
