@@ -2,7 +2,7 @@
 
 Theo **Tuần 6** (*Hướng dẫn BTL LTNC-2026*): cây kế thừa OOP + Singleton + Factory.
 
-Mở file này trên **GitHub** để Mermaid render sơ đồ.
+> Commit & push, rồi mở file này trên **github.com** (không dùng tab Preview trong IDE — Cursor preview hay fail với classDiagram).
 
 ---
 
@@ -13,9 +13,9 @@ classDiagram
     direction TB
     class BaseEntity {
         -Long id
-        +Long getId()
-        +void setId(Long id)
-        +String printInfo()
+        +getId() Long
+        +setId(id) void
+        +printInfo() String
     }
     class User {
         -String username
@@ -26,19 +26,19 @@ classDiagram
         -BigDecimal balance
         -BigDecimal frozenBalance
         -boolean active
-        +BigDecimal availableBalance()
-        +void freeze(BigDecimal amount)
-        +void unfreeze(BigDecimal amount)
-        +String printInfo()
+        +availableBalance() BigDecimal
+        +freeze(amount) void
+        +unfreeze(amount) void
+        +printInfo() String
     }
     class Admin {
-        +String printInfo()
+        +printInfo() String
     }
     class Seller {
-        +String printInfo()
+        +printInfo() String
     }
     class Bidder {
-        +String printInfo()
+        +printInfo() String
     }
     class Role {
         <<enumeration>>
@@ -66,27 +66,27 @@ classDiagram
         -String name
         -String description
         -BigDecimal startingPrice
-        +ItemCategory category()
-        +String printInfo()
+        +category() ItemCategory
+        +printInfo() String
     }
     class ElectronicsItem {
         -String brand
-        +ItemCategory category()
-        +String printInfo()
+        +category() ItemCategory
+        +printInfo() String
     }
     class ArtItem {
         -String artist
-        +ItemCategory category()
-        +String printInfo()
+        +category() ItemCategory
+        +printInfo() String
     }
     class VehicleItem {
         -int year
-        +ItemCategory category()
-        +String printInfo()
+        +category() ItemCategory
+        +printInfo() String
     }
     class OtherItem {
-        +ItemCategory category()
-        +String printInfo()
+        +category() ItemCategory
+        +printInfo() String
     }
     class ItemCategory {
         <<enumeration>>
@@ -96,7 +96,7 @@ classDiagram
         OTHER
     }
     class ItemFactory {
-        +AuctionItem create()
+        +create() AuctionItem
     }
     AuctionItem <|-- ElectronicsItem
     AuctionItem <|-- ArtItem
@@ -110,7 +110,7 @@ classDiagram
 
 ---
 
-## 3. Product (Auction) / Bid / AutoBid
+## 3. Product / Bid / AutoBid
 
 ```mermaid
 classDiagram
@@ -128,15 +128,15 @@ classDiagram
         -LocalDateTime endTime
         -String imageUrl
         -Long version
-        +boolean isBiddable()
-        +BigDecimal minNextBid()
-        +String printInfo()
+        +isBiddable() boolean
+        +minNextBid() BigDecimal
+        +printInfo() String
     }
     class Bid {
         -BigDecimal amount
         -LocalDateTime createdAt
         -boolean autoBid
-        +String printInfo()
+        +printInfo() String
     }
     class AutoBidConfig {
         -BigDecimal maxBid
@@ -178,27 +178,27 @@ classDiagram
     <<abstract>> User
 ```
 
-Status flow: `PENDING → OPEN → RUNNING → FINISHED → PAID / CANCELED`
+Status: `PENDING → OPEN → RUNNING → FINISHED → PAID / CANCELED`
 
 ---
 
-## 4. Singleton + Observer (AuctionManager)
+## 4. Singleton + Observer
 
 ```mermaid
 classDiagram
     direction TB
     class AuctionEventPublisher {
         -List observers
-        +void subscribe(BidObserver o)
-        +void unsubscribe(BidObserver o)
-        +void notifyBid(BidEvent e)
+        +subscribe(o) void
+        +unsubscribe(o) void
+        +notifyBid(e) void
     }
     class BidObserver {
         <<interface>>
-        +void onBidPlaced(BidEvent e)
+        +onBidPlaced(e) void
     }
     class WebSocketBidObserver {
-        +void onBidPlaced(BidEvent e)
+        +onBidPlaced(e) void
     }
     class BidEvent {
         +Long productId
@@ -208,8 +208,8 @@ classDiagram
         +LocalDateTime timestamp
     }
     class AuctionServiceImpl {
-        +BidResponse placeBid()
-        +void processLifecycle()
+        +placeBid() BidResponse
+        +processLifecycle() void
     }
     BidObserver <|.. WebSocketBidObserver
     AuctionEventPublisher o--> BidObserver : observers
@@ -227,8 +227,8 @@ classDiagram
 classDiagram
     direction TB
     class UserFactory {
-        +User create()
-        +User createAdmin()
+        +create() User
+        +createAdmin() User
     }
     class RegisterRequest {
         +String username
@@ -256,7 +256,7 @@ classDiagram
 
 ---
 
-## 6. Layer architecture (Server + JavaFX)
+## 6. Layer architecture
 
 ```mermaid
 classDiagram
