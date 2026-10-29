@@ -3,19 +3,25 @@ package com.auction.demo.ui.controller;
 import com.auction.demo.dto.auth.AuthResponse;
 import com.auction.demo.ui.api.ApiException;
 import com.auction.demo.ui.api.AuthApiClient;
+import com.auction.demo.ui.config.ClientConfig;
 import com.auction.demo.ui.nav.SceneNavigator;
+import com.auction.demo.ui.nav.UiShell;
 import com.auction.demo.ui.session.SessionManager;
+import com.auction.demo.ui.util.FxAsync;
 
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 
 public class LoginController {
 
+	@FXML
+	private TextField serverHostField;
+	@FXML
+	private TextField serverPortField;
 	@FXML
 	private TextField usernameField;
 	@FXML
@@ -25,63 +31,72 @@ public class LoginController {
 	@FXML
 	private Button loginButton;
 	@FXML
-	private ProgressIndicator loading;
+	private Hyperlink registerLink;
 
 	private final AuthApiClient authApi = new AuthApiClient();
 
 	@FXML
 	private void initialize() {
-		loading.setVisible(false);
-		errorLabel.setText("");
+		errorLabel.setVisible(false);
+		serverHostField.setText(ClientConfig.host());
+		serverPortField.setText(String.valueOf(ClientConfig.port()));
+		usernameField.setText("admin");
+		passwordField.setText("password");
+		usernameField.setOnAction(e -> handleLogin());
+		passwordField.setOnAction(e -> handleLogin());
 	}
 
 	@FXML
-	private void onLogin() {
-		String username = usernameField.getText() == null ? "" : usernameField.getText().trim();
+	private void handleLogin() {
+		applyServer();
+		String username = text(usernameField);
 		String password = passwordField.getText() == null ? "" : passwordField.getText();
 		if (username.isEmpty() || password.isEmpty()) {
-			errorLabel.setText("Nhập username và password");
+			showError("Nhập username và password");
 			return;
 		}
-		runLogin(username, password);
+		loginButton.setDisable(true);
+		FxAsync.run(() -> authApi.login(username, password), this::onSuccess, this::onError);
 	}
 
-	private void runLogin(String username, String password) {
-		setBusy(true);
-		Task<AuthResponse> task = new Task<>() {
-			@Override
-			protected AuthResponse call() throws Exception {
-				return authApi.login(username, password);
-			}
-		};
-		task.setOnSucceeded(e -> handleSuccess(task.getValue()));
-		task.setOnFailed(e -> handleError(task.getException()));
-		new Thread(task, "login-api").start();
+	@FXML
+	private void handleSwitchToRegister() {
+		if (UiShell.auth() != null) {
+			UiShell.auth().showRegister();
+		}
 	}
 
-	private void handleSuccess(AuthResponse auth) {
+	private void onSuccess(AuthResponse auth) {
+		loginButton.setDisable(false);
 		SessionManager.get().save(auth);
-		setBusy(false);
-		SceneNavigator.showHome();
+		SceneNavigator.showDashboard();
 	}
 
-	private void handleError(Throwable ex) {
-		setBusy(false);
-		Throwable cause = ex.getCause() == null ? ex : ex.getCause();
-		if (cause instanceof ApiException apiEx) {
-			errorLabel.setText(apiEx.getMessage());
+	private void onError(Throwable ex) {
+		loginButton.setDisable(false);
+		if (ex instanceof ApiException apiEx) {
+			showError(apiEx.getMessage());
 			return;
 		}
-		errorLabel.setText("Không kết nối được server (" + cause.getMessage() + ")");
+		showError("Không kết nối được server (" + ex.getMessage() + ")");
 	}
 
-	private void setBusy(boolean busy) {
-		loading.setVisible(busy);
-		loginButton.setDisable(busy);
-		usernameField.setDisable(busy);
-		passwordField.setDisable(busy);
-		if (busy) {
-			errorLabel.setText("");
+	private void applyServer() {
+		int port = ClientConfig.port();
+		try {
+			port = Integer.parseInt(text(serverPortField));
+		} catch (NumberFormatException ignored) {
+			showError("Port không hợp lệ, dùng " + ClientConfig.port());
 		}
+		ClientConfig.setServer(text(serverHostField), port);
+	}
+
+	private void showError(String message) {
+		errorLabel.setText(message);
+		errorLabel.setVisible(true);
+	}
+
+	static String text(TextField field) {
+		return field.getText() == null ? "" : field.getText().trim();
 	}
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.ImageView?>
+
+<ScrollPane fitToWidth="true" prefHeight="600.0" prefWidth="700.0" styleClass="dark-bg-scroll" style="-fx-border-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.auction.demo.ui.controller.CreateItemController">
+    <content>
+        <VBox alignment="TOP_CENTER" spacing="15.0" styleClass="dark-bg">
+            <padding>
+                <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+            </padding>
+            <children>
+                <Label styleClass="text-heading" text="📦 Đăng sản phẩm mới">
+                    <font><Font name="System Bold" size="26.0" /></font>
+                </Label>
+
+                <VBox spacing="5.0">
+                    <Label styleClass="text-secondary" text="Loại sản phẩm (*)" />
+                    <ComboBox fx:id="typeComboBox" maxWidth="Infinity" prefWidth="260.0" promptText="-- Chọn loại sản phẩm --" styleClass="combo-box" />
+                </VBox>
+
+                <Separator style="-fx-background-color: #0f3460; -fx-opacity: 0.3;" />
+
+                <VBox spacing="5.0">
+                    <Label styleClass="text-secondary" text="Tên sản phẩm (*)" />
+                    <TextField fx:id="nameField" promptText="Ví dụ: iPhone 15 Pro Max" />
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <Label styleClass="text-secondary" text="Mô tả chi tiết" />
+                    <TextArea fx:id="descArea" prefHeight="80.0" promptText="Tình trạng xước xát, phụ kiện đi kèm..." styleClass="text-area" wrapText="true" />
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <Label styleClass="text-secondary" text="Giá khởi điểm (VNĐ) (*)" />
+                    <TextField fx:id="priceField" promptText="Ví dụ: 15000000" />
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <Label styleClass="text-secondary" text="Tình trạng (*)" />
+                    <ComboBox fx:id="conditionComboBox" maxWidth="Infinity" prefWidth="260.0" promptText="-- Chọn tình trạng --" styleClass="combo-box" />
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <Label styleClass="text-secondary" text="Link Ảnh (URL)" />
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <children>
+                            <TextField fx:id="imageUrlField" promptText="https://imgur.com/anh-san-pham.jpg" HBox.hgrow="ALWAYS" />
+                            <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#handleUploadImage" text="Tải ảnh lên 📤" />
+                        </children>
+                    </HBox>
+                    <StackPane fx:id="previewContainer" managed="false" style="-fx-border-color: #0f3460; -fx-border-width: 1; -fx-border-radius: 8; -fx-padding: 8; -fx-background-color: rgba(15, 52, 96, 0.2); -fx-background-radius: 8;" visible="false">
+                        <children>
+                            <ImageView fx:id="previewImageView" fitHeight="150.0" fitWidth="150.0" preserveRatio="true" />
+                        </children>
+                    </StackPane>
+                </VBox>
+
+                <Separator style="-fx-background-color: #0f3460; -fx-opacity: 0.3;" />
+
+                <Label styleClass="text-accent" text="⚡ Thông số kỹ thuật">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Label>
+
+                <VBox fx:id="electronicsBox" managed="false" spacing="10.0" visible="false">
+                    <TextField fx:id="brandField" promptText="Thương hiệu (VD: Apple, Samsung)" />
+                    <TextField fx:id="warrantyField" promptText="Số tháng bảo hành (VD: 12)" />
+                </VBox>
+
+                <VBox fx:id="artBox" managed="false" spacing="10.0" visible="false">
+                    <TextField fx:id="artistField" promptText="Tên Nghệ sĩ / Họa sĩ" />
+                    <TextField fx:id="artYearField" promptText="Năm sáng tác (VD: 2020)" />
+                    <TextField fx:id="mediumField" promptText="Chất liệu (VD: Sơn dầu, Màu nước)" />
+                </VBox>
+
+                <VBox fx:id="vehicleBox" managed="false" spacing="10.0" visible="false">
+                    <TextField fx:id="makeField" promptText="Hãng xe (VD: Toyota, Honda)" />
+                    <TextField fx:id="modelField" promptText="Dòng xe (VD: Camry, SH 150i)" />
+                    <TextField fx:id="mileageField" promptText="Số Km đã đi" />
+                    <TextField fx:id="vehicleYearField" promptText="Năm sản xuất" />
+                </VBox>
+
+                <Label fx:id="statusLabel" styleClass="text-secondary" text="Vui lòng điền đầy đủ thông tin" />
+                <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#handleSubmit" prefHeight="45.0" prefWidth="200.0" text="Đăng Sản Phẩm" />
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
