@@ -21,7 +21,7 @@ classDiagram
         -Long id
         +getId() Long
         +setId(Long)
-        +printInfo()* String
+        +printInfo() String
     }
 
     class User {
