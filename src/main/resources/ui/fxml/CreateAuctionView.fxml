@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane fitToWidth="true" prefHeight="650.0" prefWidth="700.0" styleClass="dark-bg-scroll" style="-fx-border-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.auction.demo.ui.controller.CreateAuctionController">
+    <content>
+        <VBox spacing="15.0" styleClass="dark-bg">
+    <padding>
+        <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+    </padding>
+    <children>
+        <Label styleClass="text-heading" text="⚡ Tạo phiên đấu giá">
+            <font><Font name="System Bold" size="24.0" /></font>
+        </Label>
+
+        <VBox spacing="5.0">
+            <children>
+                <Label styleClass="text-secondary" text="Chọn sản phẩm (*)" />
+                <ComboBox fx:id="itemComboBox" maxWidth="Infinity" prefWidth="320.0" promptText="-- Bấm để chọn sản phẩm của bạn --" styleClass="combo-box" />
+            </children>
+        </VBox>
+
+        <VBox fx:id="itemPreviewBox" spacing="10.0" styleClass="card-bg" style="-fx-border-color: #0f3460; -fx-border-radius: 8; -fx-padding: 18; -fx-background-radius: 8;">
+            <children>
+                <Label styleClass="text-accent" text="Thông tin sản phẩm đã chọn">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Label>
+                <VBox fx:id="previewContentBox" maxWidth="Infinity" spacing="9.0" />
+            </children>
+        </VBox>
+
+        <Separator style="-fx-background-color: #0f3460; -fx-opacity: 0.3;" />
+
+        <VBox spacing="5.0">
+            <children>
+                <Label styleClass="text-secondary" text="Tiêu đề phiên đấu giá (*)" />
+                <TextField fx:id="titleField" promptText="Ví dụ: Đấu giá siêu phẩm iPhone 15" />
+            </children>
+        </VBox>
+
+        <VBox spacing="5.0">
+            <children>
+                <Label styleClass="text-secondary" text="Mô tả quy định phiên" />
+                <TextArea fx:id="descArea" prefHeight="60.0" promptText="Ghi chú thêm về phiên đấu giá..." styleClass="text-field" wrapText="true" />
+            </children>
+        </VBox>
+
+        <HBox spacing="20.0">
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label styleClass="text-secondary" text="Thời gian bắt đầu (*)" />
+                    <HBox spacing="8.0">
+                        <RadioButton fx:id="startNowRadio" mnemonicParsing="false" text="Ngay bây giờ" />
+                        <RadioButton fx:id="startInFiveRadio" mnemonicParsing="false" text="Sau 5 phút" />
+                        <RadioButton fx:id="startCustomRadio" mnemonicParsing="false" text="Tùy chỉnh" />
+                    </HBox>
+                    <VBox fx:id="startCustomBox" managed="false" spacing="6.0" visible="false">
+                        <children>
+                            <DatePicker fx:id="startDatePicker" prefWidth="150.0" promptText="Ngày" styleClass="date-picker" />
+                            <HBox spacing="8.0">
+                                <Spinner fx:id="startHourSpinner" editable="true" prefWidth="82.0" />
+                                <Spinner fx:id="startMinuteSpinner" editable="true" prefWidth="82.0" />
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children>
+            </VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label styleClass="text-secondary" text="Thời gian kết thúc (*)" />
+                    <HBox spacing="8.0">
+                        <RadioButton fx:id="endOneHourRadio" mnemonicParsing="false" text="Sau 1 giờ" />
+                        <RadioButton fx:id="endSixHoursRadio" mnemonicParsing="false" text="Sau 6 giờ" />
+                        <RadioButton fx:id="endOneDayRadio" mnemonicParsing="false" text="Sau 1 ngày" />
+                        <RadioButton fx:id="endCustomRadio" mnemonicParsing="false" text="Tùy chỉnh" />
+                    </HBox>
+                    <VBox fx:id="endCustomBox" managed="false" spacing="6.0" visible="false">
+                        <children>
+                            <DatePicker fx:id="endDatePicker" prefWidth="150.0" promptText="Ngày" styleClass="date-picker" />
+                            <HBox spacing="8.0">
+                                <Spinner fx:id="endHourSpinner" editable="true" prefWidth="82.0" />
+                                <Spinner fx:id="endMinuteSpinner" editable="true" prefWidth="82.0" />
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children>
+            </VBox>
+        </HBox>
+
+        <Label fx:id="durationLabel" text="⏱️ Thời lượng dự kiến: Vui lòng chọn ngày giờ" textFill="#f39c12">
+            <font><Font name="System Bold" size="13.0" /></font>
+        </Label>
+
+        <Separator style="-fx-background-color: #0f3460; -fx-opacity: 0.3;" />
+
+        <HBox spacing="20.0">
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label styleClass="text-secondary" text="Cửa sổ Anti-Sniping (giây)" />
+                    <TextField fx:id="antiSnipingWindowField" promptText="Mặc định: 60" text="60" styleClass="text-field" />
+                </children>
+            </VBox>
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <Label styleClass="text-secondary" text="Gia hạn Anti-Sniping (giây)" />
+                    <TextField fx:id="antiSnipingExtensionField" promptText="Mặc định: 120" text="120" styleClass="text-field" />
+                </children>
+            </VBox>
+        </HBox>
+
+        <VBox alignment="CENTER" spacing="10.0">
+            <children>
+                <Label fx:id="statusLabel" text=" " textFill="#e94560" />
+                <Button mnemonicParsing="false" onAction="#handleCreateAuction" prefHeight="45.0" prefWidth="250.0" text="Tạo Phiên Đấu Giá" />
+            </children>
+            <VBox.margin><Insets top="10.0" /></VBox.margin>
+        </VBox>
+    </children>
+        </VBox>
+    </content>
+</ScrollPane>

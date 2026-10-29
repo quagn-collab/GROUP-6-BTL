@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" spacing="20.0" styleClass="dark-bg" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.auction.demo.ui.controller.AuctionListController">
+    <padding>
+        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+    </padding>
+    <children>
+        <Label styleClass="text-heading" text="🏛 Danh sách phiên đấu giá">
+            <font><Font name="System Bold" size="24.0" /></font>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <children>
+                <Button fx:id="btnMyAuctions" mnemonicParsing="false" prefWidth="135.0" styleClass="payment-filter-chip" text="My Auctions" />
+                <TextField fx:id="searchField" promptText="Tìm kiếm tên sản phẩm..." styleClass="text-field" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#handleSearch" style="-fx-background-color: #4ecdc4; -fx-text-fill: #1a1a2e;" text="🔍 Tìm" />
+            </children>
+        </HBox>
+
+        <ScrollPane fx:id="auctionScrollPane" fitToWidth="true" hbarPolicy="NEVER" styleClass="dark-bg-scroll" style="-fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <content>
+                <FlowPane fx:id="auctionGrid" hgap="20.0" vgap="20.0" />
+            </content>
+        </ScrollPane>
+
+    </children>
+</VBox>
