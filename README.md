@@ -2,7 +2,7 @@
 
 Backend Spring Boot (REST + WebSocket) cho hệ thống đấu giá trực tuyến. Frontend gọi API qua `/api/**` và realtime qua `/ws`.
 
-**Class diagrams (Tuần 6):** [docs/class-diagrams/README.md](docs/class-diagrams/README.md)
+**Class diagrams (Tuần 6):** [docs/README/README.md](docs/README/README.md)
 
 ## Stack
 
