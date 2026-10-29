@@ -14,13 +14,11 @@ Các diagram dưới đây phản ánh **code hiện tại** của GROUP-6-BTL (
 
 ```mermaid
 classDiagram
-    direction TB
-
     class BaseEntity {
         <<abstract>>
         -Long id
         +getId() Long
-        +setId(Long)
+        +setId(Long id)
         +printInfo() String
     }
 
@@ -35,8 +33,8 @@ classDiagram
         -BigDecimal frozenBalance
         -boolean active
         +availableBalance() BigDecimal
-        +freeze(BigDecimal)
-        +unfreeze(BigDecimal)
+        +freeze(BigDecimal amount)
+        +unfreeze(BigDecimal amount)
         +printInfo() String
     }
 
