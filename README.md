@@ -92,6 +92,7 @@ src/main/java/com/auction/demo/
 └── util/           # DateTimeUtil, ValidationUtil, MockDataUtil
 ```
 ## Cấu trúc hiện tại đang đc hoàn thành
+```
 GROUP-6-BTL/
 ├── pom.xml                          Java 21, Spring Boot 4.1.2, JavaFX 21
 ├── README.md
@@ -135,7 +136,7 @@ GROUP-6-BTL/
         ├── DemoApplicationTests.java
         ├── service/AuctionServiceImplTest.java
         └── integration/             Auth + luồng đấu giá
-
+```
 ## API chính
 
 | Method | Path | Mô tả |
