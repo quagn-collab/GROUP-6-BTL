@@ -3,7 +3,7 @@ package com.auction.demo.ui.config;
 public final class ClientConfig {
 
 	private static String host = "localhost";
-	private static int port = 8089;
+	private static int port = 3307;
 
 	private ClientConfig() {
 	}
