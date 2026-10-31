@@ -40,6 +40,20 @@
     -fx-padding: 20 0 0 0;
 }
 
+/* Sidebar: chi vung danh sach menu duoc cuon; logo va footer luon hien thi. */
+.dashboard-sidebar-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.dashboard-sidebar-scroll > .viewport,
+.dashboard-sidebar-scroll > .corner {
+    -fx-background-color: transparent;
+}
+
 /* --- 3. Ô NHẬP LIỆU --- */
 .text-field, .password-field, .text-area {
     -fx-border-radius: 8;

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -36,25 +37,30 @@
             
             <Region prefHeight="40.0" />
 
-            <!-- Các nút menu chính -->
-            <VBox spacing="10.0">
-                <children>
-                    <Button fx:id="btnHome" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="🏠   Trang chủ" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnMyItems" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="📦   Vật phẩm" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnCreateAuction" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="⚡   Tạo phiên mới" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnAuctionList" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="🏛   Danh sách đấu giá" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnPayments" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="💳   Thanh toán" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnWallet" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="💰   Ví tiền" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnAdminUsers" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="👥   Quản lý người dùng" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnAdminItems" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="✓   Duyệt sản phẩm" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnAdminFinancial" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="₫   Kiểm toán tài chính" alignment="BASELINE_LEFT" />
-                    <Button fx:id="btnAdminSystemMonitor" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="◉   Giám sát hệ thống" alignment="BASELINE_LEFT" />
-                </children>
-            </VBox>
+            <!-- Vùng cuộn chỉ dành cho các nút menu chính.
+                 Logo và hai nút Hồ sơ/Đăng xuất bên dưới luôn được giữ cố định. -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                        minHeight="0.0" pannable="true" styleClass="dashboard-sidebar-scroll"
+                        VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox spacing="10.0">
+                        <children>
+                            <Button fx:id="btnHome" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="🏠   Trang chủ" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnMyItems" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="📦   Vật phẩm" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnCreateAuction" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="⚡   Tạo phiên mới" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnAuctionList" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="🏛   Danh sách đấu giá" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnPayments" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="💳   Thanh toán" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnWallet" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="💰   Ví tiền" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnAdminUsers" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="👥   Quản lý người dùng" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnAdminItems" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="✓   Duyệt sản phẩm" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnAdminFinancial" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="₫   Kiểm toán tài chính" alignment="BASELINE_LEFT" />
+                            <Button fx:id="btnAdminSystemMonitor" maxWidth="Infinity" mnemonicParsing="false" styleClass="sidebar-item" text="◉   Giám sát hệ thống" alignment="BASELINE_LEFT" />
+                        </children>
+                    </VBox>
+                </content>
+            </ScrollPane>
 
-            <!-- Khoảng trống đẩy footer xuống đáy -->
-            <Region VBox.vgrow="ALWAYS" />
-
+            <!-- Footer cố định, không bị đẩy ra ngoài khi menu dài -->
             <!-- Các nút cài đặt / đăng xuất -->
             <VBox spacing="10.0">
                 <children>
